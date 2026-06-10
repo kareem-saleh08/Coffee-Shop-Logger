@@ -4,11 +4,9 @@
   "type": "module",
   "description": "Daily sales and customer logger for coffee-shop SMBs",
   "scripts": {
-    "start": "node server/index.js",
-    "build": "npm install --prefix client && npm run build --prefix client",
     "dev": "concurrently \"node server/index.js\" \"npm run dev --prefix client\"",
-    "server:dev": "node server/index.js",
-    "client:dev": "npm run dev --prefix client",
+    "build": "npm run build --prefix client",
+    "start": "node server/index.js",
     "test": "node --test tests/api.test.js"
   },
   "dependencies": {

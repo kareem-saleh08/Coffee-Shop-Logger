@@ -1,33 +1,31 @@
 import express from 'express';
-import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { createDb } from './db.js';
 import { createRouter } from './routes/log.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const PORT = process.env.PORT || 3001;
-const DB_PATH = path.join(__dirname, '..', 'data', 'logs.db');
 
-const db = createDb(DB_PATH);
 const app = express();
 
-app.use(cors());
+// Middleware
 app.use(express.json());
 
+// Initialize database
+const db = createDb(path.join(__dirname, '..', 'data', 'logs.db'));
+
+// API routes
 app.use('/api', createRouter(db));
 
-// Serve built React app
-const distPath = path.join(__dirname, '..', 'client', 'dist');
-app.use(express.static(distPath));
+// Serve static files from built client
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
-// SPA fallback — all non-API routes return index.html
-app.get('*', (_req, res) => {
-  res.sendFile(path.join(distPath, 'index.html'));
+// Fallback to index.html for React routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 });
 
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`Coffee Shop Logger API running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
-
-export default app;
