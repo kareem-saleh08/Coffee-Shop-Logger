@@ -1,6 +1,6 @@
 # Coffee Shop Logger
 
-A full-stack daily-logging app for coffee-shop small businesses. Log your daily sales totals and customer counts, then watch your numbers come alive on an interactive dashboard with running totals and a Plotly chart.
+A full-stack daily-logging app for coffee-shop small businesses. Log your daily sales totals and customer counts, then watch your numbers come alive on an interactive dashboard with running totals and Plotly charts.
 
 ---
 
