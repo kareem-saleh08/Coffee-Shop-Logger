@@ -17,6 +17,15 @@ app.use(express.json());
 
 app.use('/api', createRouter(db));
 
+// Serve built React app
+const distPath = path.join(__dirname, '..', 'client', 'dist');
+app.use(express.static(distPath));
+
+// SPA fallback — all non-API routes return index.html
+app.get('*', (_req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`Coffee Shop Logger API running on http://localhost:${PORT}`);
 });
