@@ -7,3 +7,22 @@ body {
   color: #2B1F15;
   font-family: 'Inter', sans-serif;
 }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+
+@keyframes floatAlt {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-8px) rotate(10deg); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0px); }
+}
+
+.anim-float     { animation: float    3.5s ease-in-out infinite; }
+.anim-float-alt { animation: floatAlt 5s   ease-in-out infinite; }
+.anim-fade-in-up { animation: fadeInUp 0.45s ease-out both; }
